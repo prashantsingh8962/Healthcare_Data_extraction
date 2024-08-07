@@ -2,7 +2,7 @@
 
 I made this project by following Data Analytics Bootcamp 3.0, the link for the course is below. If you are interested checkout the link.
 
-[Data Analytics Bootcamp 3.0]([https://codebasics.io/courses/python-for-beginner-and-intermediate-learners](https://codebasics.io/bootcamps/data-analytics-bootcamp-with-practical-job-assistance?utm_source=google&utm_medium=roas&utm_campaign=Pmax_Data_Analytics_Bootcamp_Tier-1-Cities&utm_content=Bootcamp_price_update_Asset-1-8400&utm_campaign=dataanalyticsbootcamp&utm_id=googleadspaid&gad_source=1&gclid=Cj0KCQjwtsy1BhD7ARIsAHOi4xarm2jVwEvOabRvvh0Yc_Vh8WmbhuyGwiTlQ3ZCxE9J8-K-J5NC9ckaAhdjEALw_wcB))
+[Data Analytics Bootcamp 3.0](https://codebasics.io/bootcamps/data-analytics-bootcamp-with-practical-job-assistance?utm_source=google&utm_medium=roas&utm_campaign=Pmax_Data_Analytics_Bootcamp_Tier-1-Cities&utm_content=Bootcamp_price_update_Asset-1-8400&utm_campaign=dataanalyticsbootcamp&utm_id=googleadspaid&gad_source=1&gclid=Cj0KCQjwtsy1BhD7ARIsAHOi4xarm2jVwEvOabRvvh0Yc_Vh8WmbhuyGwiTlQ3ZCxE9J8-K-J5NC9ckaAhdjEALw_wcB)
 
 ## Problem Statement for Python Expert
 
