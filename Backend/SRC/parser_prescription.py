@@ -1,45 +1,56 @@
+from Backend.src.parser_generic import MedicalDocumentParser
 import re
-from parser_generic import MedicalDocParser
-class PrescriptionParser(MedicalDocParser):
+class PerscriptionParser(MedicalDocumentParser):
     def __init__(self, text):
-        MedicalDocParser.__init__(self, text)
+        MedicalDocumentParser.__init__(self, text)
 
-    # def parse(self):
-    #     return{
-    #         'patient_name': self.get_name(),
-    #         'patient_address': self.get_address(),
-    #         'medicines': self.get_medicine(),
-    #         'Directions': self.get_Directions(),
-    #         'refill': self.get_refill()
-    #     }
-
-#code refractoring
+    #code refractoring
     def parse(self):
         return {
-            'patient_name': self.get_field('patient_name'),
-            'patient_address': self.get_field('patient_address'),
-            'medicines': self.get_field('medicines'),
-            'Directions': self.get_field('Directions'),
-            'refills': self.get_field('refills')
+            'patient_name':self.get_filed('patient_name'),
+            'patient_address':self.get_filed('patient_address'),
+            'medicine':self.get_filed('medicine'),
+            'directions':self.get_filed('directions'),
+            'refill':self.get_filed('refill')
         }
 
-#u can use tuple or dictionary to make this compact
-    def get_field(self, field_name):
-        pattern_dict = {
-            'patient_name': {'pattern': 'Name:(.*)Date', 'flags': 0},
-            'patient_address': {'pattern': 'Address:(.*)\n', 'flags': 0},
-            'medicines': {'pattern': "Address:[^P]*(.*)Directions", 'flags': re.DOTALL},
-            'directions': {'pattern': 'Directions:(.*)Refill', 'flags': re.DOTALL},
-            'refills': {'pattern': 'Refill:(.*)times', 'flags': 0},
+    #u can use tuple or dictionary to make this code compact
+    def get_filed(self, filed_name):
+        pattern_dic ={
+            "patient_name":{'pattern': 'Name:(.*)Date', 'flags':0},
+            "patient_address": {'pattern': 'Address:(.*)\n', 'flags': 0},
+            "medicine": {'pattern': 'Address:[^\n]*(.*)Directions', 'flags': re.DOTALL},
+            "directions": {'pattern': 'Directions:(.*)Refill', 'flags': re.DOTALL},
+            "refill": {'pattern': 'Refill:.*(\d+).times', 'flags': 0},
         }
-
-        pattern_object = pattern_dict.get(field_name)
+        pattern_object = pattern_dic[filed_name]
         if pattern_object:
-            matches = re.findall(pattern_object['pattern'], self.text, flags=pattern_object['flags'])
-            if len(matches) > 0:
+            matches = re.findall(pattern_object['pattern'], self.text, flags=pattern_object["flags"])
+            if matches:
                 return matches[0].strip()
         return ''
 
+
+if __name__ == "__main__":
+    text = '''Dr John >mith, M.D
+
+2 Non-Important street,
+New York, Phone (900)-323- ~2222
+
+Name:  Virat Kohli Date: 2/05/2022
+
+Address: 2 cricket blvd, New Delhi
+
+| Omeprazole 40 mg
+
+Directions: Use two tablets daily for three months
+
+Refill: 3 times'''
+    pp = PerscriptionParser(text)
+    print(pp.parse())
+
+       '
+=======================================================================================================================
 
 #WAY OF USING IF>>>ELSE MANY TIMES=====>
     # def get_filed(self, field_name):
@@ -50,6 +61,14 @@ class PrescriptionParser(MedicalDocParser):
     #         pattern= "Address:(.*)\n"
 
 #LONG WAY====>
+    # def parse(self):
+    #     return{
+    #         'patient_name': self.get_name(),
+    #         'patient_address': self.get_address(),
+    #         'medicines': self.get_medicine(),
+    #         'Directions': self.get_Directions(),
+    #         'refill': self.get_refill()
+    #     }
     # def get_name(self):
     #     pattern ='Name:(.*)Date'
     #     matches = re.findall(pattern, self.text)
@@ -79,28 +98,3 @@ class PrescriptionParser(MedicalDocParser):
     #     matches = re.findall(pattern, self.text)
     #     if len(matches)>0:
     #         return matches[0].strip()
-
-
-
-
-
-if __name__ == '__main__':
-    document_text = '''Name: Marta Sharapova Date: 5/11/2022
-Address: 9 tennis court, new Russia, DC
--—s-« Prednisone 20 mg
-Lialda 2.4 gram
-
-Directions:
-
-Prednisone, Taper 5 mig every 3 days,
-Finish in 2.5 weeks
-Lialda - take 2 pill everyday for 1 month
-
-Refill: 2 times
-'''
-    pp = PrescriptionParser(document_text)
-    print(pp.parse())
-
-
-
-
