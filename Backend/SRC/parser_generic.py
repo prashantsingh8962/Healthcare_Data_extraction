@@ -1,6 +1,5 @@
 import abc
-
-class MedicalDocParser(metaclass=abc.ABCMeta):
+class MedicalDocumentParser(metaclass=abc.ABCMeta):
     def __init__(self, text):
         self.text = text
 
